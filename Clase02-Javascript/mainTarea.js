@@ -2,8 +2,9 @@
 //let colorDefinido="rojo";
 //let colorSemaforoActual = "Rojo";
 
-//let colorDefinido = prompt("Ingrese un color");
-/* if (colorDefinido === "rojo") {
+
+let colorDefinido = prompt("Ingrese un color");
+ if (colorDefinido === "rojo") {
   alert("Puede avanzar");
 } else if (colorDefinido === "verde") {
   alert("Puede avanzar");
@@ -11,7 +12,7 @@
   alert("Puede avanzar");
 } else if (colorDefinido ==="") {
   alert("No puede ingresar una data vacia");
-} else alert("No puede avanzar"); */
+} else alert("No puede avanzar"); 
 
 //EJERCICIO 02
 
