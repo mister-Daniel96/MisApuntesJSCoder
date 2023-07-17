@@ -1,13 +1,14 @@
 //Ejercicio 01
             /*
             let correoUsuario = prompt("Ingrese su email");
-            let band = false;
+          let band=false;
             for (let i = 0; i < correoUsuario.length; i++) {
               if (correoUsuario.charAt(i) === "@") {
-                alert("Es un correo");
-                break; //el break corta el bucle
+               band=true;break;
               }
             }
+            if(band)console.log('Es un mail valido');
+            else console.log('Es un mail invalido');
             */
 //Ejercicio 02
             /*
@@ -33,8 +34,8 @@
               if (i % 2 === 0) sumPar += i;
               else sumImpar += i;
             }
-            alert(`La suma de todos los números pares da ${sumPar} número`);
-            alert(`La suma de todos los números impares da ${sumImpar} número`);
+            alert(`La suma de todos los números pares da ${sumPar} `);
+            alert(`La suma de todos los números impares da ${sumImpar} `);
                 */
 
 //Ejercicio 04
