@@ -35,7 +35,7 @@ const llenarInventario = () => {
     let categoria = prompt("Ingrese la categoria");
     let id = prompt("ingrese el id del producto");
     productos.push(new Producto(nombre, precio, cantidad, categoria, id));
-  } while (opcionElegida === "si" && productos.length < 2);
+  } while (opcionElegida === "si" && productos.length < 5);
 
   productos.sort((a, b) => {
     if (a.nombre < b.nombre) {
