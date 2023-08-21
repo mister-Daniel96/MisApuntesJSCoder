@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+
+    
+    <form action="">
+        <label for="lista-productos"></label>
+        <select id="lista-productos"></select>
+    </form>
+    <div class="productos">
+        <ul class="productos-lista">
+        </ul>
+    </div>
+    <span class="precioTotal"></span>
+
+    <form action="" id="formActualizar">
+        <label for="id">
+            <span>id</span>
+            <input type="text" id="id" >
+        </label>
+        <br>
+        <label for="producto">
+            <span>producto</span>
+            <input type="text" id="producto" >
+        </label>
+        <br>
+        <label for="categoria">
+            <span>cateogria</span>
+            <input type="text" id="categoria">
+        </label>
+        <br>
+        <label for="precio">
+            <span>precio</span>
+            <input type="text" id="precio">
+        </label>
+        <br>
+        <label for="cantidad">
+            <span>cantidad</span>
+            <input type="text" id="cantidad">
+        </label>
+        <br>
+        <label for="envioGratis">
+            <span>envio Gratis</span>
+            <input type="text" id="envioGratis">
+        </label>
+        <br>
+        <label for="colores">
+            <span>Colores</span>
+            <input type="text" id="colores">
+        </label>
+        <br>
+
+        <input type="submit" value="Modificar" id="EnviarFormulario">
+    </form>
+
+    <form action="">
+        <br>
+        <br>
+        <label for="">
+            <span >Busqueda por palabra clave: </span>
+            <input type="text" id="busquedaClave">
+        </label>
+        <input type="submit" value="Buscar">
+    </form>
+    <ul class="colores"></ul>
+    <script src="./main.js"></script>
+</body>
+
+</html>

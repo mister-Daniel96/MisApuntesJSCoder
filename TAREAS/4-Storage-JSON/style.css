@@ -1,0 +1,19 @@
+
+.dark{
+    background-color: black;
+    color: rgba(255, 255, 255, 0.411);
+}
+
+#form{
+    width:200px;
+    margin: 0 auto;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+   
+}
+#form label{
+    display: block;
+    margin: auto;
+}
