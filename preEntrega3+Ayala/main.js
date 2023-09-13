@@ -32,7 +32,7 @@ function recuperarCompras() {
   const aux = JSON.parse(localStorage.getItem("carrito"));
 
   if (aux != null) {
-    carrito.splice(0, carrito.length);
+   // carrito.splice(0, carrito.length);
     carrito.push(...aux);
     carritoCont.textContent=carrito.length;
   }else carritoCont.textContent="0";
