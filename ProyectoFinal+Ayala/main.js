@@ -8,7 +8,6 @@ const enlaces = document.querySelectorAll(".enlace");
 
 const carrito = [];
 
-
 openNav.addEventListener("click", () => {
   navbar.classList.add("active");
 });
@@ -88,6 +87,7 @@ function cargarCards(array) {
 
         </div>`);
   }, "");
+  console.log(array);
   //siempre debemos validar las etiquetas contenedoras que estan en diferentes html
   if (divProductos) {
     divProductos.innerHTML = stringProductos;
@@ -114,8 +114,7 @@ function cargarCardsCarrito(array) {
   //solo porque este js es compratido tengo que validar si existe la etiqueta
   if (divProductosCarrito) {
     divProductosCarrito.innerHTML = stringProductos;
-  } else console.log("NO EXISTE");
-
+  }
   /*   <button class="btn-eliminar" id="item-carrito-${item.id}">Eliminar</button>
    */
 }
@@ -182,12 +181,13 @@ function eliminarDelCarrito() {
           //el problema es cuando quiero volver a cargar el contenido de la card
           //window.location.href = window.location.href;
           //==========================================================
-          Swal.fire("Eliminado!", "Su producto fue eliminado", "success")
-          .then(result=>{
-            if(result.isConfirmed){
-              window.location.href = window.location.href;
+          Swal.fire("Eliminado!", "Su producto fue eliminado", "success").then(
+            (result) => {
+              if (result.isConfirmed) {
+                window.location.href = window.location.href;
+              }
             }
-          })
+          );
         }
       });
     });
@@ -220,6 +220,39 @@ function realizarBusqueda(json) {
     agregarCarrito(aux);
   });
 }
+
+function culminarCompra() {
+  document.querySelector(".cuentaTotal-pagar").addEventListener("click", () => {
+    Swal.fire({
+      title: "Seguro que desea comprar?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Confirmar",
+      cancelButtonText: "Cancelar",
+    })
+      .then((result) => {
+        if (carrito.length === 0) {
+          throw new Error("Carrito vacio");
+        }
+        if (result.isConfirmed) {
+          Swal.fire(
+            "Compra terminada!",
+            "Gracias por su compra",
+            "success"
+          ).then((confirmed) => {
+            localStorage.setItem("carritoDeCompras", JSON.stringify(null));
+            recuperarCarrito();
+            window.location.href = window.location.href;
+          });
+        }
+      })
+      .catch((error) => {
+        Swal.fire(`${error}!`, "Vuelva pronto", "warning");
+      });
+  });
+}
 async function showData() {
   const json = await getData();
   cargarCards(json);
@@ -229,6 +262,7 @@ async function showData() {
   //buscas en este arreglo y lo agregas
   agregarCarrito(json);
   eliminarDelCarrito();
+  culminarCompra();
 }
 
 //En conclusion todas las interacciones que se haran sera a traves de la asincronia
