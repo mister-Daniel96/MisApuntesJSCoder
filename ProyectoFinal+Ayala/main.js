@@ -184,7 +184,23 @@ function eliminarDelCarrito() {
           Swal.fire("Eliminado!", "Su producto fue eliminado", "success").then(
             (result) => {
               if (result.isConfirmed) {
-                window.location.href = window.location.href;
+                /*  window.location.href = window.location.href;
+
+                Toastify({
+                  text: "This is a toast",
+                  duration: 3000,
+                }).showToast(); */
+
+                setTimeout(() => {
+                  Toastify({
+                    text: "Producto eliminado",
+                    duration: 1000,
+                    backgroundColor: "#f43b47",
+                  }).showToast();
+                }, 0);
+                setTimeout(() => {
+                  window.location.href = window.location.href;
+                }, 1200);
               }
             }
           );
@@ -193,6 +209,32 @@ function eliminarDelCarrito() {
     });
   });
 }
+
+function ordenar(productos) {
+  const select = document.querySelector("#ordenarProducto");
+
+  if (select) {
+    select.addEventListener("change", () => {
+      if (select.value == "Ascendente") {
+        productos.sort(function (a, b) {
+          if (a.title.toLowerCase() < b.title.toLowerCase()) return -1;
+          if (a.title.toLowerCase() > b.title.toLowerCase()) return 1;
+          return 0;
+        });
+      }
+      if (select.value == "Descendente") {
+        productos.sort(function (a, b) {
+          if (a.title.toLowerCase() < b.title.toLowerCase()) return 1;
+          if (a.title.toLowerCase() > b.title.toLowerCase()) return -1;
+          return 0;
+        });
+      }
+      cargarCards(productos);
+      agregarCarrito(productos);
+    });
+  }
+}
+
 function realizarBusqueda(json) {
   form.addEventListener("input", (e) => {
     e.preventDefault();
@@ -222,42 +264,46 @@ function realizarBusqueda(json) {
 }
 
 function culminarCompra() {
-  document.querySelector(".cuentaTotal-pagar").addEventListener("click", () => {
-    Swal.fire({
-      title: "Seguro que desea comprar?",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Confirmar",
-      cancelButtonText: "Cancelar",
-    })
-      .then((result) => {
-        if (carrito.length === 0) {
-          throw new Error("Carrito vacio");
-        }
-        if (result.isConfirmed) {
-          Swal.fire(
-            "Compra terminada!",
-            "Gracias por su compra",
-            "success"
-          ).then((confirmed) => {
-            localStorage.setItem("carritoDeCompras", JSON.stringify(null));
-            recuperarCarrito();
-            window.location.href = window.location.href;
-          });
-        }
+  const cuentaTotal = document.querySelector(".cuentaTotal-pagar");
+  if (cuentaTotal) {
+    cuentaTotal.addEventListener("click", () => {
+      Swal.fire({
+        title: "Seguro que desea comprar?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Confirmar",
+        cancelButtonText: "Cancelar",
       })
-      .catch((error) => {
-        Swal.fire(`${error}!`, "Vuelva pronto", "warning");
-      });
-  });
+        .then((result) => {
+          if (carrito.length === 0) {
+            throw new Error("Carrito vacio");
+          }
+          if (result.isConfirmed) {
+            Swal.fire(
+              "Compra terminada!",
+              "Gracias por su compra",
+              "success"
+            ).then((confirmed) => {
+              localStorage.setItem("carritoDeCompras", JSON.stringify(null));
+              recuperarCarrito();
+              window.location.href = window.location.href;
+            });
+          }
+        })
+        .catch((error) => {
+          Swal.fire(`${error}!`, "Vuelva pronto", "warning");
+        });
+    });
+  }
 }
 async function showData() {
   const json = await getData();
   cargarCards(json);
   //console.log(json);
   //para los botones
+  ordenar(json);
   realizarBusqueda(json);
   //buscas en este arreglo y lo agregas
   agregarCarrito(json);
