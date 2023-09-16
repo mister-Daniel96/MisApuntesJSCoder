@@ -1,4 +1,22 @@
 
+Deploy de la pagina 
+https://mister-daniel96.github.io/ProyectoFinalBorrador/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    <!--  <video src="" id="video" autoplay></video> -->
 /* const initializeCamera=async()=>{
     const video=document.querySelector('#video');
